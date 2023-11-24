@@ -1,0 +1,53 @@
+<p
+  *ngIf="
+    responsability &&
+    responsability.itemList &&
+    responsability.itemList.length > 0
+  "
+>
+  <a
+    class="btn btn-primary"
+    data-bs-toggle="collapse"
+    href="#collapseExample"
+    role="button"
+    aria-expanded="false"
+    aria-controls="collapseExample"
+  >
+    {{ responsability.establishment }}
+  </a>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Fullname</th>
+          <th scope="col">Amount pending</th>
+          <th scope="col">Amount paided</th>
+          <th scope="col">Active</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- verificación segura(?) en caso de que venga o no la lista para evitar undefined -->
+        <tr *ngFor="let i of responsability?.itemList">
+          <td>{{ i.fullName }}</td>
+          <td>
+            <span class="badge bg-danger">
+              {{ i.amountPend | currency : "USD" }}
+            </span>
+          </td>
+          <td>
+            <span class="badge bg-success">
+              {{ i.amountPaid | currency : "USD" }}
+            </span>
+          </td>
+          <td>{{ i.active ? "Yes" : "No" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<a class="btn btn-link" (click)="back()">
+  <fa-icon [icon]="faArrowLeft"></fa-icon>
+</a>

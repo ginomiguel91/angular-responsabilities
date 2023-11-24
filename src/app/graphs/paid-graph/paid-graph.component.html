@@ -1,0 +1,18 @@
+<h1>Total Paid by Establishment</h1>
+<hr />
+<div class="row">
+  <div class="col">
+    <div style="display: block">
+      <canvas
+        baseChart
+        class="chart"
+        [data]="barChartPaidData"
+        [options]="barChartOptions"
+        [type]="barChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"
+      >
+      </canvas>
+    </div>
+  </div>
+</div>

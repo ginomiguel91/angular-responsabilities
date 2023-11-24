@@ -1,0 +1,141 @@
+<h1>{{ responsability.id ? "Edit Responsability" : "Add Responsability" }}</h1>
+<hr />
+
+<form
+  action=""
+  (ngSubmit)="saveResponsability()"
+  [formGroup]="responsabilitiesForm"
+  autocomplete="off"
+>
+  <div class="row">
+    <div class="form-group col-7">
+      <label for="exampleFormControlInput1">
+        <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+        Establishment</label
+      >
+      <input
+        formControlName="establishment"
+        type="text"
+        [ngClass]="errorField('establishment')"
+        id="establishment"
+        placeholder="Store #..."
+        required
+      />
+      <div [ngClass]="msgErrorsClassField('establishment')">
+        {{ msgErrorValidation("establishment") }}
+      </div>
+    </div>
+
+    <div class="form-group col-5">
+      <label for="exampleFormControlSelect1">
+        <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+        Status</label
+      >
+
+      <select
+        formControlName="status"
+        [ngClass]="errorField('status')"
+        id="status"
+        required
+      >
+        <option value="">--Select the option--</option>
+        <option value="pending">pending</option>
+        <option value="complete">complete</option>
+      </select>
+
+      <div [ngClass]="msgErrorsClassField('status')">
+        {{ msgErrorValidation("status") }}
+      </div>
+    </div>
+  </div>
+  <div formArrayName="itemList">
+    <button class="btn btn-primary mt-2" type="button" (click)="addItem()">
+      <fa-icon [icon]="faPlus"></fa-icon> Add responsability
+    </button>
+    <div class="row-fluid">
+      <div class="row">
+        <div class="col-4">
+          <strong>
+            <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+            FullName</strong
+          >
+        </div>
+        <div class="col-3">
+          <strong>
+            <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+            Amount Pending($)</strong
+          >
+        </div>
+        <div class="col-3">
+          <strong>
+            <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+            Amount Paid($)</strong
+          >
+        </div>
+        <div class="col-2"><strong>Active</strong></div>
+      </div>
+    </div>
+    <div *ngFor="let item of itemList.controls; let i = index">
+      <div class="row-fluid" [formGroupName]="i" style="width: 100%">
+        <div class="row mt-2">
+          <div class="col-4">
+            <div class="input-group">
+              <input
+                type="text"
+                formControlName="fullName"
+                placeholder="Pepe
+              Glez"
+                [ngClass]="itemsErrorsField(i, 'fullName')"
+              />
+
+              <div [ngClass]="msgItemsErrorsClassField(i, 'fullName')">
+                {{ msgItemsErrorsFieldValidation(i, "fullName") }}
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <input
+              class="form-control"
+              type="text"
+              formControlName="amountPend"
+            />
+          </div>
+          <div class="col-3">
+            <input
+              class="form-control"
+              type="text"
+              formControlName="amountPaid"
+            />
+          </div>
+
+          <div class="form-group form-check col-1">
+            <input
+              type="checkbox"
+              formControlName="active"
+              class="form-check-input"
+              id="exampleCheck1"
+            />
+          </div>
+          <div class="col-1">
+            <fa-icon (click)="removeItem(i)" [icon]="faTrash"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-2 d-grid gap-2 d-md-flex justify-content-md-end">
+    <button
+      [disabled]="responsabilitiesForm.invalid"
+      type="submit"
+      class="btn btn-success mr-2"
+    >
+      <fa-icon [icon]="faCheckDouble"></fa-icon>
+      {{ responsability.id ? "Update" : "Save" }}
+    </button>
+    <a [routerLink]="['/responsabilities/list']" class="btn btn-danger mr-2">
+      <fa-icon [icon]="faCancel"></fa-icon>
+      Cancel</a
+    >
+  </div>
+</form>

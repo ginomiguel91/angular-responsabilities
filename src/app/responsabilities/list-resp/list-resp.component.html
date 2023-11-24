@@ -1,0 +1,40 @@
+<h1>Responsabilities list</h1>
+<hr />
+<app-export-file (onExportFileEvent)="exportFile($event)"></app-export-file>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Update Date</th>
+      <th scope="col">Establishment</th>
+      <th scope="col">status</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let res of responsabilities">
+      <td>{{ res.updateDate | date : "dd/MM/YYYY" }}</td>
+      <td>{{ res.establishment }}</td>
+      <td>{{ res.status }}</td>
+
+      <td>
+        <div class="btn-group">
+          <a
+            [routerLink]="['/responsabilities', res.id]"
+            class="btn btn-success"
+          >
+            <fa-icon [icon]="faSearchDollar"></fa-icon>
+          </a>
+          <a
+            [routerLink]="['/responsabilities/edit', res.id]"
+            class="btn btn-warning"
+          >
+            <fa-icon [icon]="faEdit"></fa-icon>
+          </a>
+          <a (click)="remove(res.id)" class="btn btn-danger">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
