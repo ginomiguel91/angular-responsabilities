@@ -4,6 +4,7 @@ import {
   faListUl,
   faFileCirclePlus,
   faBarChart,
+  faChartSimple,
 } from '@fortawesome/free-solid-svg-icons';
 export interface MenuItem {
   texto: string;
@@ -44,6 +45,16 @@ export class MenuComponent {
       texto: 'Pend Graph',
       ruta: '/graphs/pendGraph',
       icon: faBarChart,
+    },
+    {
+      texto: 'Actives Graph',
+      ruta: 'graphs/activesGraph',
+      icon: faChartSimple,
+    },
+    {
+      texto: 'Inactives Graph',
+      ruta: 'graphs/inactivesGraph',
+      icon: faChartSimple,
     },
   ];
 }

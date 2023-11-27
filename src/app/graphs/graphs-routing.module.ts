@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PaidGraphComponent } from './paid-graph/paid-graph.component';
 import { PendGraphComponent } from './pend-graph/pend-graph.component';
+import { ActivesGraphComponent } from './actives-graph/actives-graph.component';
+import { InactivesGraphComponent } from './inactives-graph/inactives-graph.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,16 @@ const routes: Routes = [
       {
         path: 'pendGraph',
         component: PendGraphComponent,
+      },
+
+      {
+        path: 'activesGraph',
+        component: ActivesGraphComponent,
+      },
+
+      {
+        path: 'inactivesGraph',
+        component: InactivesGraphComponent,
       },
       {
         path: '**',

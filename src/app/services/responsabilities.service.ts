@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.development';
 import { MatResp } from '../interfaces/responsabilities.interface';
 import { Observable } from 'rxjs';
 import { TotalAmount } from '../interfaces/totalAmount.interface';
+import { CountActiveInactive } from '../interfaces/countActiveInactive.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -64,5 +65,17 @@ export class ResponsabilitiesService {
   totalAPendByEstablishment(establishment: string): Observable<TotalAmount> {
     const url = `${this._baseUrl}/responsabilities/totalAPend?establishment=${establishment}`;
     return this.http.get<TotalAmount>(url);
+  }
+  searchActivesByEstablishment(
+    establishment: string
+  ): Observable<CountActiveInactive> {
+    const url = `${this._baseUrl}/responsabilities/searchActives?establishment=${establishment}`;
+    return this.http.get<CountActiveInactive>(url);
+  }
+  searchInactivesByEstablishment(
+    establishment: string
+  ): Observable<CountActiveInactive> {
+    const url = `${this._baseUrl}/responsabilities/searchInactives?establishment=${establishment}`;
+    return this.http.get<CountActiveInactive>(url);
   }
 }

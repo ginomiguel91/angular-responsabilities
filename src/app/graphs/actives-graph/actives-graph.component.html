@@ -1,0 +1,26 @@
+<h1>Actives by Establishment</h1>
+<hr />
+
+<div
+  *ngIf="doughnutChartData.datasets[0].data.length === 0; else divGrafica"
+  class="alert alert-info"
+>
+  Loading data...
+</div>
+
+<div class="row">
+  <div class="col">
+    <ng-template #divGrafica>
+      <div style="display: block">
+        <canvas
+          baseChart
+          class="chart"
+          [data]="doughnutChartData"
+          [type]="doughnutChartType"
+        >
+        </canvas>
+      </div>
+      <span class="float-end text-primary">Information of active peoples </span>
+    </ng-template>
+  </div>
+</div>
